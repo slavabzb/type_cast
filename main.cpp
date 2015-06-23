@@ -1,18 +1,11 @@
 #include <iostream>
 #include "TypeCast.h"
 
-/**
- * string       -> int
- * const char*  -> int
- */
-
 
 
 int main()
 {
-  //type_cast< char* >( 1 );
-
-  //std::cout << value << '\n';
+  std::cout << type_cast< std::string >( 12 ) << '\n';
 
   return 0;
 }
