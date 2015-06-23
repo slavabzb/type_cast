@@ -5,10 +5,11 @@
  * int, float, unsigned int, char*, std::string
  *
  * const char*  -> int, float, unsigned int, string
- * string       -> int, float, unsigned int
+ * std::string  -> int, float, unsigned int
  * unsigned int -> int, float, string
  * float        -> int, unsigned int, string
  * int          -> float, unsigned int, string
+ * any          -> const char*, char* - COMPILE TIME ERROR
  */
 
 #include <string>
@@ -88,13 +89,13 @@ unsigned int type_cast( const char* string )
 
 
 
-template<> std::string  type_cast( const char* string )        { return ( std::string( string ) ); }
-template<> std::string  type_cast( float value )               { return ( std::to_string( value ) ); }
-template<> std::string  type_cast( int value )                 { return ( std::to_string( value ) ); }
-template<> std::string  type_cast( unsigned int value )        { return ( std::to_string( value ) ); }
-template<> int          type_cast( const std::string& string ) { return ( type_cast< int >( string.c_str() ) ); }
-template<> float        type_cast( const std::string& string ) { return ( type_cast< float >( string.c_str() ) ); }
-template<> unsigned int type_cast( const std::string& string ) { return ( type_cast< unsigned int >( string.c_str() ) ); }
+template<> std::string  type_cast( const char* string ) { return ( std::string( string ) ); }
+template<> std::string  type_cast( float value )        { return ( std::to_string( value ) ); }
+template<> std::string  type_cast( int value )          { return ( std::to_string( value ) ); }
+template<> std::string  type_cast( unsigned int value ) { return ( std::to_string( value ) ); }
+template<> int          type_cast( std::string string ) { return ( type_cast< int >( string.c_str() ) ); }
+template<> float        type_cast( std::string string ) { return ( type_cast< float >( string.c_str() ) ); }
+template<> unsigned int type_cast( std::string string ) { return ( type_cast< unsigned int >( string.c_str() ) ); }
 
 
 
